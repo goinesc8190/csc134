@@ -29,18 +29,19 @@ cout << "Todays Special:" << meal_name << endl;
 cout << endl;
 cout << "How many would you like? ";
 cin  >> num_meals;
-cout << "Tip amount? (min 0?)"
-
+cout << "Tip amount? (min 0?) ";
+cin  >>  tip_amount;
 
 // Do the calculation
-;sub_total = meal_price * num_meals;   
+sub_total = meal_price * num_meals;   
 
 
 // Present the output
 cout << endl;
 cout <<"Your Order" << endl << "--------------------------" << endl;
 cout << num_meals << " x " << meal_name << "\t$" << meal_price << endl;
-cout << "sub_total: \t\t$" << endl;
+cout << "sub_total: \t\t$" << sub_total<< endl;
+cout << "Tip amount \t\t$" << tip_amount<< endl;
 
 
 return 0; //no errors
