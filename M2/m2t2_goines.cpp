@@ -8,6 +8,7 @@ Assumption: Sales tax is 8% (varies by county)
 */
 
 #include <iostream>
+#include <iomanip>
 using namespace std;
 // if don't use namespace, type std: :cout every time instead of cout (also cin)
 
@@ -34,15 +35,19 @@ cin  >>  tip_amount;
 
 // Do the calculation
 sub_total = meal_price * num_meals;   
-
+tax_amount = sub_total * tax_rate;
+total_price = sub_total+tip_amount+tax_amount;
 
 // Present the output
+cout << setprecision(2) <<fixed; //remember to import <iomanip>
 cout << endl;
-cout <<"Your Order" << endl << "--------------------------" << endl;
+cout <<"Your Order" << endl << "--------------------------------" << endl;
 cout << num_meals << " x " << meal_name << "\t$" << meal_price << endl;
 cout << "sub_total: \t\t$" << sub_total<< endl;
-cout << "Tip amount \t\t$" << tip_amount<< endl;
-
+cout << "tax_amount:\t\t$" << tax_amount<< endl;
+cout << "tip_amount: \t\t$" << tip_amount<< endl;
+cout << "--------------------------------"<< endl;
+cout << "total_price:\t\t$" << total_price<< endl;
 
 return 0; //no errors
 
