@@ -1,5 +1,5 @@
 // CSC 134
-// m2t1 - Apple Sales
+// m2t1 - Tool Sales
 // Goines
 // 2/13/2025
 
@@ -23,6 +23,7 @@ int main() {
 
 
     // Do the work - Welcome them to the store.
+    cout << setprecision(2) <<fixed;
     cout << "Welcome to the tool store" " " << name <<"."<< endl;
     cout << "We have "  << numtools << " " << "tools in stock" <<  "."  << endl;
     cout << "Price per tool is $"<<pricepertool << " each. " << endl; 
