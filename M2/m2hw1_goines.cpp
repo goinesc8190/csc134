@@ -28,14 +28,15 @@ cout << "What is your name?" <<endl;
     cout << "What is the amount of your withdrawal?" <<endl;
     cin >> withdrawal;
     
+    // Calculate finalbalance;
+     depfinalbalance = accountbalance + deposit; 
+     witfinalbalance = accountbalance + deposit - withdrawal; 
+    
     // Do the work.
     cout << setprecision(2) <<fixed;
     cout << name << endl;
     cout << "Account Number: 52378429"<< endl;
-    cout << "Withdrawal Final Balance"<< ; witfinalbalance; endl;
-    cout << "Deposit Final Balance"; depfinalbalance; 
-    
-    // Calculate finalbalance;
-     witfinalbalance = accountbalance - withdrawal; 
-     depfinalbalance = accountbalance + deposit; 
+    cout << "Withdrawal Final Balance $"<<  witfinalbalance<< endl;
+    cout << "Deposit Final Balance $" << depfinalbalance << endl;
 }
+    
