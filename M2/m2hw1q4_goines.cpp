@@ -11,15 +11,12 @@ using namespace std;
 
 int main() { 
 // Declare variables
-double letsGo,school,team,cheerOne,cheerTwo;
-double school = <<"FTCC"<< endl;
-double team = <<"Trojans"<< endl;
-double letsGo = <<"Lets's Go"
+string school, team;
 
-cout cheerOne = letsGo + school;
-
-
-
-
+// Input
+cout << "Let's Go FTCC" << endl;
+cout << "Let's Go FTCC" << endl;
+cout << "Let's Go FTCC" << endl;
+cout << "Let's Go Trojans" << endl; 
 
 }
