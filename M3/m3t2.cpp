@@ -47,6 +47,7 @@ int main() {
     result = "lose";
     } 
     cout << " ROLL results " <<  result <<endl;
+    
     return 0;
 }
 
