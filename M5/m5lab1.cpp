@@ -1,13 +1,7 @@
 //M5HW1
 //CSC 134
 //goinesc
-//3/25/26
-
-/*
-CSC 134
-M5Lab1.cpp - Main Program
-Part 1 - Input Validation
-*/
+//3/25/2026
 
 #include <iostream>
 #include "m5lab1.h"
