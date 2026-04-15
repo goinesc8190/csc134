@@ -4,7 +4,7 @@
 //4/1/26
 
 #include <iostream>
-#include <string> month1, month2, month3
+#include <string> 
 using namespace std;
 
 // List all question prototypes here
@@ -49,8 +49,9 @@ void question2() {
     cin >> rainfl3; 
 
     // caculation
-    average=rainfl1+rainfl2+rainfl3 / 3.0;  
+    double total = rainfl1+rainfl2+rainfl3;
+    average = total / 3.0;  
 
- cout <<"The average rainfall for all three months is" " "<< month1 << month2 << month3 << average <<" " "inches."<< endl;
+ cout <<"The average rainfall for all three months is "  << average << " inches."<< endl;
 
 }
