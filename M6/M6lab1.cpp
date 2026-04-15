@@ -29,10 +29,22 @@ int main() {
     magazine.push_back('S');
     magazine.push_back('W');
     magazine.push_back('S');
-    // ... and so on
-
+    
+    int slime=3;
+    int water=2;
+    loadMagazine (magazine,slime,water);
     // How full is it? Just ask.
-    cout << magazine.size();
+    cout <<"Mag size: " <<magazine.size();
+    //Show whats loaded
+    displayMagazine(magazine);
+
+  // Fire a shot
+  if (!magazine.empty()) {
+    char s = fireShot(magazine);
+    cout << "You fired:" << s << endl;
+  }
+  displayMagazine(magazine);
+
 }
 
 // Full Functions go here
