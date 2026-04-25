@@ -18,15 +18,14 @@
 //
 //  THE MAP
 //  -------
-//                         [ LIBRARY ]
+//                         [ Detached ]
 //                              |
 //                              N
 //                              |
-//         [ GARDEN ] --E--  [ ENTRY ]  --E--> [ KITCHEN ]
-//                              |                    |
-//                              W                    S
-//                         (back to Entry)           |
-//                                               [ CRYPT ]
+//         [ Kitchen ] --w--  [ Living Room ]  --E--> [ Garage ]
+//                                                        |
+//                                                        S
+//                                                  [ Boat Awning ]
 //
 //  Start: ENTRY. Explore with n / e / s / w. Type 'look' or 'quit'.
 //
@@ -40,102 +39,111 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <map>
 using namespace std;
 
-// ---------------------------------------------------------------------------
-//  Named constants (enums). These make indexing READ like English:
-//      connections[ENTRY][NORTH]   not   connections[0][0]
-// ---------------------------------------------------------------------------
 enum Direction {
     NORTH = 0,
     EAST  = 1,
     SOUTH = 2,
     WEST  = 3,
-    NUM_DIRECTIONS = 4
+    NORTHWEST = 4,
+    NUM_DIRECTIONS = 5
+};
+
+const string DIRECTION_NAMES[NUM_DIRECTIONS] = {
+    "north", "east", "south", "west"
 };
 
 enum Room {
-    ENTRY   = 0,
-    LIBRARY = 1,
-    KITCHEN = 2,
-    GARDEN  = 3,
-    CRYPT   = 4,
-    NUM_ROOMS = 5
+    LIVING_ROOM = 0,
+    KITCHEN = 1,
+    GARAGE  = 2,
+    WORK_SHOP   = 3,
+    BOAT_AWNING = 4,
+    NUM_ROOMS = 5,
 };
 
-// Sentinel for "there is no room that way." We use -1 because valid
-// room indices are always 0 or higher.
-const int NO_CONNECTION = -1;
+int main()
+{
+    string roomNames[NUM_ROOMS] = {
+       "Living Room",
+       "Kitchen",
+       "Garage"
+       "Detached Work Shop",
+       "Outside Boat Awning",
+};
+    };
+ string roomDescriptions[NUM_ROOMS] = {
+        "A real bachelor pad, with 1970s style funiture and drapes. Biscuit is resting on the couch enjoying his morning show Maurey.",
+        "The floor is tiled tiled black and white, the appliances look like a scene from Hostile, a Elizabeth Taylor delight.",
+        " One car garage concrete floor, dart board, and old furniture covered with moving blankets.", 
+        "Where money should be spent, Mac tools, Sawstop table saw, and a puzzle of 1968 Pontiac GTO parts.",
+        "Concrete slap and awning built with a box gable roof that needs the shingles replaced."
+};
 
-// ---------------------------------------------------------------------------
-//  Function prototypes (the course convention: prototypes at the top,
-//  main in the middle, full definitions at the bottom).
-// ---------------------------------------------------------------------------
+int connections()[NUM_ROOMS][NUM_DIRECTIONS]; 
+{    
+for(int r = 0; r < NUM_ROOMS; r++){
+    for (int d = 0; d < NUM_DIRECTIONS; d++) {
+        connections[r][d] = NO_CONNECTION;
+    }
+    }
+    connections() [LIVING_ROOM][NORTH] = WORK_SHOP;
+    connections() [LIVING_ROOM][EAST] = GARAGE;
+    connections() [LIVING_ROOM][WEST] = KITCHEN;
+    connections() [LIVING_ROOM][SOUTH] = NO_CONNECTION;
+
+    connections() [WORK_SHOP][NORTH] = NO_CONNECTION;
+    connections() [WORK_SHOP][EAST] = NO_CONNECTION;
+    connections() [WORK_SHOP][WEST] = NO_CONNECTION;
+    connections() [WORK_SHOP][SOUTH] = LIVING_ROOM;
+
+    connections() [KITCHEN][NORTH] = NO_CONNECTION;
+    connections() [KITCHEN][EAST] = LIVING_ROOM;
+    connections() [KITCHEN][WEST] = NO_CONNECTION;
+    connections() [KITCHEN][SOUTH] = LIVING_ROOM;
+
+    connections() [GARAGE][NORTH] = NO_CONNECTION;
+    connections() [GARAGE][WEST] = NO_CONNECTION;
+    connections() [GARAGE][WEST] = LIVING_ROOM;
+    connections() [GARAGE][SOUTH] = BOAT_AWNING;
+
+    connections() [BOAT_AWNING][NORTH] = GARAGE;
+    connections() [BOAT_AWNING][SOUTH] = NO_CONNECTION;
+    connections() [BOAT_AWNING][EAST] = NO_CONNECTION;
+    connections() [BOAT_AWNING][WEST] = NO_CONNECTION;
+}
+    // ----- Game state -----
+    int  currentRoom = LIVING_ROOM;
+    bool running = true;
+    
+    cout << "=============================" << endl;
+    cout << " THE MAP " << endl;
+    cout << "=============================" << endl;
+    cout << "Commands: north / south / east / west   (or n/s/e/w)" << endl;
+    cout << " look — re-describe this room" << endl;
+    cout << " quit — leave the map" << endl;
+
+
+
+
 void printRoom(const string names[], const string descriptions[], int room);
 void printExits(int connections[][NUM_DIRECTIONS], int room);
 int  commandToDirection(const string& command);
 
-// ===========================================================================
-//  main — sets up the world and runs the game loop.
-// ===========================================================================
-int main()
-{
-    // ----- Parallel arrays: both indexed by Room -----
-    // roomNames[CRYPT] and roomDescriptions[CRYPT] describe the same place.
-    string roomNames[NUM_ROOMS] = {
-        "Entry Hall",
-        "Ancient Library",
-        "Cold Kitchen",
-        "Overgrown Garden",
-        "Forgotten Crypt"
-    };
 
-    string roomDescriptions[NUM_ROOMS] = {
-        "A grand hall. A cracked chandelier creaks overhead.",
-        "Shelves of rotting books. The air tastes like dust.",
-        "A long kitchen. The stove is cold. Someone left a plate.",
-        "Stone paths snake through weeds. A fountain gurgles weakly.",
-        "A low, damp chamber. The walls remember things you don't."
-    };
-
-    // ----- The adjacency table (a 2D array) -----
-    // connections[fromRoom][direction] = destination room (or NO_CONNECTION).
-    int connections[NUM_ROOMS][NUM_DIRECTIONS];
-
-    // Step 1: fill every cell with NO_CONNECTION. Clean slate.
-    //         (Nested loops — the classic 2D-array pattern.)
-    for (int r = 0; r < NUM_ROOMS; r++)
-    {
-        for (int d = 0; d < NUM_DIRECTIONS; d++)
-        {
-            connections[r][d] = NO_CONNECTION;
-        }
-    }
-
-    // Step 2: wire up the connections shown in the map at the top of the file.
-    connections[ENTRY][NORTH]   = LIBRARY;
-    connections[ENTRY][EAST]    = KITCHEN;
-    connections[ENTRY][WEST]    = GARDEN;
-
-    connections[LIBRARY][SOUTH] = ENTRY;
-
-    connections[KITCHEN][WEST]  = ENTRY;
-    connections[KITCHEN][SOUTH] = CRYPT;
-
-    connections[GARDEN][EAST]   = ENTRY;
-
-    connections[CRYPT][NORTH]   = KITCHEN;
-
-    // ----- Game state -----
-    int  currentRoom = ENTRY;
+// ----- Game state -----
+    int  currentRoom = LIVING_ROOM;
     bool running = true;
-
+    
     cout << "=============================" << endl;
-    cout << "    THE DUNGEON MAP" << endl;
+    cout << " THE MAP " << endl;
     cout << "=============================" << endl;
     cout << "Commands: north / south / east / west   (or n/s/e/w)" << endl;
-    cout << "          look   — re-describe this room" << endl;
-    cout << "          quit   — leave the dungeon" << endl;
+    cout << " look — re-describe this room" << endl;
+    cout << " quit — leave the map" << endl;
 
     // ----- Game loop -----
     while (running)

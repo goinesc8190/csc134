@@ -37,18 +37,18 @@ int main()
 // ----- Parallel arrays: both indexed by Room -----
 // roomNames[CRYPT] and roomDescriptions[CRYPT] describe the same place.
  string roomNames [NUM_ROOMS] = {
-"Entry Hall",
-"Ancient Library",
-"Cold Kitchen",
-"Overgrown Garden",
-"Forgotten Crypt"
+"Living Room",
+"Kitchen",
+"Garage"
+"Detached Work Shop",
+"Outside Boat Awning",
 };
 string roomDescriptions[NUM_ROOMS] = {
-"A grand hall. A cracked chandelier creaks overhead.",
-"Shelves of rotting books. The air tastes like dust.",
-"A long kitchen. The stove is cold. Someone left a plate.", 
-"Stone paths snake through weeds. A fountain gurgles weakly.",
-"A low, damp chamber. The walls remember things you don't."
+"A real bachelor pad, with 1970s style funiture and drapes. Biscuit is resting on the couch enjoying his morning show Maurey.",
+"The floor is tiled tiled black and white, the appliances look like a scene from Hostile, a Elizabeth Taylor delight.",
+" One car garage concrete floor, dart board, and old furniture covered with moving blankets.", 
+"Where money should be spent, Mac tools, Sawstop table saw, and a puzzle of 1968 Pontiac GTO parts.",
+"Concrete slap and awning built with a box gable roof that needs the shingles replaced."
 };
 // ----- The adjacency table (a 2D array) -----
 // connections[fromRoom][direction] = destination room (or NO_CONNECTION).
