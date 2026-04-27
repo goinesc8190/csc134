@@ -51,6 +51,7 @@ enum Direction {
     NORTHWEST = 4,
     NUM_DIRECTIONS = 5
 };
+const int NO_CONNECTION = -1; // Doesn't go anywhere
 
 const string DIRECTION_NAMES[NUM_DIRECTIONS] = {
     "north", "east", "south", "west"
@@ -65,87 +66,68 @@ enum Room {
     NUM_ROOMS = 5,
 };
 
+// The full version of these two functions is at the bottom of the file
+void printRoom(const string names[], const string descriptions[], int room);
+void printExits(int connections[][NUM_DIRECTIONS], int room);
+int commandToDirection(const string& command);
+
 int main()
 {
     string roomNames[NUM_ROOMS] = {
        "Living Room",
        "Kitchen",
-       "Garage"
+       "Garage",
        "Detached Work Shop",
        "Outside Boat Awning",
 };
-    };
+
  string roomDescriptions[NUM_ROOMS] = {
         "A real bachelor pad, with 1970s style funiture and drapes. Biscuit is resting on the couch enjoying his morning show Maurey.",
-        "The floor is tiled tiled black and white, the appliances look like a scene from Hostile, a Elizabeth Taylor delight.",
+        "The floor is tiled black and white, the appliances look like a scene from Hostile, a Elizabeth Taylor delight.",
         " One car garage concrete floor, dart board, and old furniture covered with moving blankets.", 
         "Where money should be spent, Mac tools, Sawstop table saw, and a puzzle of 1968 Pontiac GTO parts.",
         "Concrete slap and awning built with a box gable roof that needs the shingles replaced."
 };
-
-int connections()[NUM_ROOMS][NUM_DIRECTIONS]; 
-{    
-for(int r = 0; r < NUM_ROOMS; r++){
+// Set up the array
+int connections[NUM_ROOMS][NUM_DIRECTIONS]; 
+  
+for (int r = 0; r < NUM_ROOMS; r++){
     for (int d = 0; d < NUM_DIRECTIONS; d++) {
-        connections[r][d] = NO_CONNECTION;
-    }
-    }
-    connections() [LIVING_ROOM][NORTH] = WORK_SHOP;
-    connections() [LIVING_ROOM][EAST] = GARAGE;
-    connections() [LIVING_ROOM][WEST] = KITCHEN;
-    connections() [LIVING_ROOM][SOUTH] = NO_CONNECTION;
-
-    connections() [WORK_SHOP][NORTH] = NO_CONNECTION;
-    connections() [WORK_SHOP][EAST] = NO_CONNECTION;
-    connections() [WORK_SHOP][WEST] = NO_CONNECTION;
-    connections() [WORK_SHOP][SOUTH] = LIVING_ROOM;
-
-    connections() [KITCHEN][NORTH] = NO_CONNECTION;
-    connections() [KITCHEN][EAST] = LIVING_ROOM;
-    connections() [KITCHEN][WEST] = NO_CONNECTION;
-    connections() [KITCHEN][SOUTH] = LIVING_ROOM;
-
-    connections() [GARAGE][NORTH] = NO_CONNECTION;
-    connections() [GARAGE][WEST] = NO_CONNECTION;
-    connections() [GARAGE][WEST] = LIVING_ROOM;
-    connections() [GARAGE][SOUTH] = BOAT_AWNING;
-
-    connections() [BOAT_AWNING][NORTH] = GARAGE;
-    connections() [BOAT_AWNING][SOUTH] = NO_CONNECTION;
-    connections() [BOAT_AWNING][EAST] = NO_CONNECTION;
-    connections() [BOAT_AWNING][WEST] = NO_CONNECTION;
+        connections[r][d]= NO_CONNECTION;
+     }
 }
-    // ----- Game state -----
-    int  currentRoom = LIVING_ROOM;
-    bool running = true;
+    connections[LIVING_ROOM][NORTH] = WORK_SHOP;
+    connections[LIVING_ROOM][EAST] = GARAGE;
+    connections[LIVING_ROOM][WEST] = KITCHEN;
+    connections[LIVING_ROOM][SOUTH] = NO_CONNECTION;
+
+    connections[WORK_SHOP][NORTH] = NO_CONNECTION;
+    connections[WORK_SHOP][EAST] = NO_CONNECTION;
+    connections[WORK_SHOP][WEST] = NO_CONNECTION;
+    connections[WORK_SHOP][SOUTH] = LIVING_ROOM;
+
+    connections[KITCHEN][NORTH] = NO_CONNECTION;
+    connections[KITCHEN][EAST] = LIVING_ROOM;
+    connections[KITCHEN][WEST] = NO_CONNECTION;
+    connections[KITCHEN][SOUTH] = LIVING_ROOM;
+
+    connections[GARAGE][NORTH] = NO_CONNECTION;
+    connections[GARAGE][WEST] = NO_CONNECTION;
+    connections[GARAGE][WEST] = LIVING_ROOM;
+    connections[GARAGE][SOUTH] = BOAT_AWNING;
+
+    connections[BOAT_AWNING][NORTH] = GARAGE;
+    connections[BOAT_AWNING][SOUTH] = NO_CONNECTION;
+    connections[BOAT_AWNING][EAST] = NO_CONNECTION;
+    connections[BOAT_AWNING][WEST] = NO_CONNECTION;
+
     
-    cout << "=============================" << endl;
-    cout << " THE MAP " << endl;
-    cout << "=============================" << endl;
-    cout << "Commands: north / south / east / west   (or n/s/e/w)" << endl;
-    cout << " look — re-describe this room" << endl;
-    cout << " quit — leave the map" << endl;
-
-
-
-
-void printRoom(const string names[], const string descriptions[], int room);
-void printExits(int connections[][NUM_DIRECTIONS], int room);
-int  commandToDirection(const string& command);
-
-
 // ----- Game state -----
     int  currentRoom = LIVING_ROOM;
     bool running = true;
     
-    cout << "=============================" << endl;
-    cout << " THE MAP " << endl;
-    cout << "=============================" << endl;
-    cout << "Commands: north / south / east / west   (or n/s/e/w)" << endl;
-    cout << " look — re-describe this room" << endl;
-    cout << " quit — leave the map" << endl;
-
-    // ----- Game loop -----
+   
+// ----- Game loop -----
     while (running)
     {
         printRoom(roomNames, roomDescriptions, currentRoom);
@@ -243,3 +225,11 @@ int commandToDirection(const string& command)
     if (command == "west"  || command == "w") return WEST;
     return -1;
 }
+void printRoom(const string names[], const string descriptions[], int room);
+void printExits(int connections[][NUM_DIRECTIONS], int room);
+int  commandToDirection(const string& command);
+
+void printRoom(const string names[], const string descriptions[], int room);
+void printExits(int connections[][NUM_DIRECTIONS], int room);
+int  commandToDirection(const string& command);
+
