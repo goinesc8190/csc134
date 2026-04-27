@@ -1,3 +1,7 @@
+//goinesc
+//CSC134
+//4/24/26
+
 // ============================================================================
 //  M6LAB2: The Dungeon Map — Adjacency List Starter
 //  CSC 134 — Module 6: Arrays
