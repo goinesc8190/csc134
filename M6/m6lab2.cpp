@@ -132,8 +132,15 @@ for (int r = 0; r < NUM_ROOMS; r++){
     
    
 // ----- Game loop -----
-    while (running)
-    {
+    while (running) {
+    
+    cout<< "\nYou enter the " << currentRoom << ".\n";
+    
+
+    printExits(connections, currentRoom);
+    cout << ">";
+    cin >> command;
+    
         printRoom(roomNames, roomDescriptions, currentRoom);
         printExits(connections, currentRoom);
 
@@ -147,8 +154,9 @@ for (int r = 0; r < NUM_ROOMS; r++){
             running = false;
             continue;
         }
-        if (command == "look" || command == "l")
-        {
+
+        if (command == "look" || command == "l") {
+        }
             // Loop back around; the top of the loop re-prints the room.
             continue;
         }
