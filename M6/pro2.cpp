@@ -52,7 +52,7 @@ int main()
 
     string roomDescriptions[NUM_ROOMS] = {
         "A real bachelor pad, with 1970s style furniture and drapes. "
-        "Biscuit is resting on the couch enjoying his morning show Maury.",
+        "Biscuit is resting on the couch enjoying his favorite show Maury.",
 
         "The floor is tiled black and white; the appliances look like a scene "
         "straight out of Hostel — an Elizabeth Taylor delight.",
@@ -94,7 +94,7 @@ int main()
         int  currentRoom = LIVING_ROOM;
         bool running     = true;
 
-        cout << "\nTrey pulls into the driveway after a long day.\n"
+        cout << "\nTrey pulls into the driveway.\n"
              << "He grabs his keys, pushes open the front door,\n"
              << "and steps into the living room...\n";
 
@@ -164,15 +164,15 @@ bool roomEvent(int room, bool& running)
     switch (room) {
 
         case LIVING_ROOM:
-            cout << "\nBiscuit glances up from the couch with a challenging look.\n"
+            cout << "\nBiscuit glances up from the couch with a agitated look.\n"
                  << "Do you want to wrestle Biscuit? (yes/no): ";
             cin >> answer;
             if (answer == "yes" || answer == "y") {
                 roll = rand() % 100;
                 if (roll < 75) {
-                    cout << "\nYou pin Biscuit to the cushions! He wags his tail in defeat. Good boy.\n";
+                    cout << "\nYou pin Biscuit! He growls in defeat.\n";
                 } else {
-                    cout << "\nBiscuit takes you down hard — full-body slam off the couch.\n"
+                    cout << "\nBiscuit takes you down hard — full-body roll off the couch.\n"
                          << "You tap out. GAME OVER.\n";
                     running = false;
                     return false;
@@ -183,7 +183,7 @@ bool roomEvent(int room, bool& running)
             break;
 
         case KITCHEN:
-            cout << "\nThe kitchen smells like possibility.\n"
+            cout << "\nThe kitchen smells like this mornings breakfast.\n"
                  << "Do you want to cook dinner? (yes/no): ";
             cin >> answer;
             if (answer == "yes" || answer == "y") {
@@ -241,7 +241,7 @@ bool roomEvent(int room, bool& running)
             break;
 
         case WORK_SHOP:
-            cout << "\nThe 1968 Pontiac GTO sits in pieces, waiting for Trey.\n"
+            cout << "\nThe 1968 Pontiac GTO will not start, waiting for Trey.\n"
                  << "Do you want to work on the GTO? (yes/no): ";
             cin >> answer;
             if (answer == "yes" || answer == "y") {
