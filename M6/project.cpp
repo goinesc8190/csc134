@@ -2,44 +2,7 @@
 //CSC134
 //4/24/26
 
-// ============================================================================
-//  M6LAB2: The Dungeon Map — Adjacency List Starter
-//  CSC 134 — Module 6: Arrays
-// ============================================================================
-//
-//  THE BIG IDEA
-//  ------------
-//  Our dungeon has 5 rooms. Rooms connect to neighbors via N / E / S / W.
-//  We need a way to answer: "If I'm in room X and I move north, where do I
-//  end up?"
-//
-//  The answer: an ADJACENCY LIST stored as a 2D array.
-//      connections[fromRoom][direction] = destination room
-//
-//  We ALSO use PARALLEL ARRAYS to hold each room's name and description —
-//  same index in every array points to the same room.
-//
-//
-//  THE MAP
-//  -------
-//                         [ Detached ]
-//                              |
-//                              N
-//                              |
-//         [ Kitchen ] --w--  [ Living Room ]  --E--> [ Garage ]
-//                                                        |
-//                                                        S
-//                                                  [ Boat Awning ]
-//
-//  Start: ENTRY. Explore with n / e / s / w. Type 'look' or 'quit'.
-//
-//
-//  FUTURE REFACTOR NOTE
-//  --------------------
-//  Once we learn structs, rooms become a single struct with fields for
-//  name, description, and exits. For now, parallel arrays keep everything
-//  out in the open where we can see it.
-// ============================================================================
+
 
 #include <iostream>
 #include <string>
@@ -134,9 +97,6 @@ for (int r = 0; r < NUM_ROOMS; r++){
 // ----- Game loop -----
     while (running) {
     
-    cout<< "\nYou enter the " << currentRoom << ".\n";
-    
-
     printExits(connections, currentRoom);
     cout << ">";
     cin >> command;
